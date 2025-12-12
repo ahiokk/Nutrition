@@ -1,0 +1,47 @@
+# configs/base_config.yaml
+
+# Пути к данным
+data:
+  dish_csv: "data/dish.csv"
+  ingredients_csv: "data/ingredients.csv"
+  images_dir: "data/images"
+  train_split_name: "train"
+  test_split_name: "test"
+
+# Параметры датасетов / лоадеров
+loader:
+  batch_size: 32
+  num_workers: 4
+  shuffle_train: true
+
+# Модель и обучение
+train:
+  num_epochs: 25
+  learning_rate: 1e-3
+  weight_decay: 1e-5
+  device: "cuda"    # "cuda" или "cpu"
+  seed: 42
+  save_dir: "models"
+  save_name: "best_model.pth"
+
+model:
+  backbone_name: "resnet50"
+  pretrained: true
+  dropout: 0.5
+
+# Настройки аугментаций
+augment:
+  resize_height: 224
+  resize_width: 224
+  horizontal_flip: true
+
+# Инференс
+inference:
+  batch_size: 32
+  num_workers: 4
+  top_k: 5
+
+# Прочее (логирование)
+logging:
+  log_interval: 50         # каждые N батчей печатать лог
+  metrics_path: "logs/metrics.csv"
